@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  session_id  String    @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @unique
+  shop        String    @unique
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+  gid         String?   @unique
+  bundles     Bundle[]
+}
+
+model Bundle {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  session     Session @relation(fields: [shop], references: [shop], onDelete: Cascade)
+  shop        String
+  faqs        Faq[]
+}
+
+model Faq {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  bundle      Bundle @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  bundleId    String @db.ObjectId
+}

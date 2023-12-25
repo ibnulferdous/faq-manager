@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "faq-manager"
+client_id = "dbe0975d655463f16fdcd25b1ae2d887"
+application_url = "https://convertible-kernel-swift-pay.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://convertible-kernel-swift-pay.trycloudflare.com/auth/callback",
+  "https://convertible-kernel-swift-pay.trycloudflare.com/auth/shopify/callback",
+  "https://convertible-kernel-swift-pay.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "tools-iot.myshopify.com"

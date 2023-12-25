@@ -1,0 +1,55 @@
+{% comment %} {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
+<span style="color:{{ block.settings.colour }}">
+  {% render 'stars', rating: avg_rating %}
+</span>
+{% if avg_rating >= 4 %}
+  <br>
+  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+  {{ 'ratings.home.recommendationText' | t }}
+{% endif %} {% endcomment %}
+
+<div>
+  <h2>{{ block.settings.title }}</h2>
+</div>
+
+
+{% comment %} <div>
+  {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
+    {%for bundle in bundles %}
+      {% assign faqs = bundle.faqs %}
+      <p>Bundle: {{  bundle }}</p>    
+    {% endfor %}
+</div> {% endcomment %}
+
+<div>
+  {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
+    {%for bundle in bundles %}
+      {% assign faqs = bundle.faqs %}
+      {% if faqs.size > 0 %}
+        <p>Bundle: {{  bundle.title }}</p> 
+        {% for faq in faqs %}
+          <details>
+            <summary><h3>{{ faq.title }}</h3></summary>
+            <p>{{ faq.description }}</p>
+          </details>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+</div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Star Rating",
+  "target": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "product", "id": "product", "label": "product", "autofill": true },
+    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+  ]
+}
+{% endschema %}
+
