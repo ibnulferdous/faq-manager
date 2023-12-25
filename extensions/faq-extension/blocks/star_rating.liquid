@@ -7,34 +7,40 @@
   <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
   {{ 'ratings.home.recommendationText' | t }}
 {% endif %} {% endcomment %}
+<div class="faq-container">
+  {% comment %} FAQ Title Div {% endcomment %}
+  <div class="faq-title-container">
+    <h2 class="faq-block-title">{{ block.settings.title }}</h2>
+  </div>
 
-<div>
-  <h2>{{ block.settings.title }}</h2>
-</div>
+  {% comment %} <div>
+    {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
+      {%for bundle in bundles %}
+        {% assign faqs = bundle.faqs %}
+        <p>Bundle: {{  bundle }}</p>    
+      {% endfor %}
+  </div> {% endcomment %}
 
-
-{% comment %} <div>
-  {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
-    {%for bundle in bundles %}
-      {% assign faqs = bundle.faqs %}
-      <p>Bundle: {{  bundle }}</p>    
-    {% endfor %}
-</div> {% endcomment %}
-
-<div>
-  {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
-    {%for bundle in bundles %}
-      {% assign faqs = bundle.faqs %}
-      {% if faqs.size > 0 %}
-        <p>Bundle: {{  bundle.title }}</p> 
-        {% for faq in faqs %}
-          <details>
-            <summary><h3>{{ faq.title }}</h3></summary>
-            <p>{{ faq.description }}</p>
-          </details>
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
+  <div>
+    {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
+      {%for bundle in bundles %}
+        {% assign faqs = bundle.faqs %}
+        {% if faqs.size > 0 %}
+          <p>Bundle: {{  bundle.title }}</p> 
+          {% for faq in faqs %}
+            <details>
+              <summary class="faq-summary">
+                <h3>
+                  <span>{{ faq.title }}</span>
+                  <span class="icon">&#43;</span> 
+                </h3>
+              </summary>
+              <p>{{ faq.description }}</p>
+            </details>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+  </div>
 </div>
 
 
@@ -43,8 +49,9 @@
 
 {% schema %}
 {
-  "name": "Star Rating",
+  "name": "FAQ Manager",
   "target": "section",
+  "stylesheet": "faq-manager-styles.css",
   "settings": [
     { "type": "text", "id": "title", "label": "Title" },
     { "type": "product", "id": "product", "label": "product", "autofill": true },

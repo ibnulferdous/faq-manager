@@ -1,0 +1,12 @@
+.faq-container .faq-summary h3 {
+  border-bottom: 1px solid #cecece;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.faq-container .faq-summary h3 span.icon {
+  display: block;
+  padding-inline: 10px;
+}
