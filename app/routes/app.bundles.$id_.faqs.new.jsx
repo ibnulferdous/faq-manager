@@ -12,7 +12,7 @@ import { useLoaderData, useNavigation, useSubmit } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import { useState } from "react";
 import { authenticate } from "../shopify.server";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 
 // Loader function
 export async function loader({ request, params }) {

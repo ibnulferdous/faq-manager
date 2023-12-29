@@ -6,12 +6,29 @@
   <br>
   <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
   {{ 'ratings.home.recommendationText' | t }}
-{% endif %} {% endcomment %}
-<div class="faq-container">
+{% endif %}  {% endcomment %}
+
+{% style %}
+  .faq-{{ block.id }}-padding {
+    padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .faq-{{ block.id }}-padding {
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="faq-container faq-{{ block.id }}-padding">
   {% comment %} FAQ Title Div {% endcomment %}
-  <div class="faq-title-container">
-    <h2 class="faq-block-title">{{ block.settings.title }}</h2>
-  </div>
+  {% if block.settings.show_main_heading %}
+    <div class="faq-title-container">
+      <h2 class="faq-block-title" style="color: {{ block.settings.main_heading_color }}">{{ block.settings.main_heading }}</h2>
+    </div>
+  {% endif %}
 
   {% comment %} <div>
     {%assign bundles = shop.metafields.faq_manager.faq_data.value.bundles  %}
@@ -26,16 +43,23 @@
       {%for bundle in bundles %}
         {% assign faqs = bundle.faqs %}
         {% if faqs.size > 0 %}
-          <p>Bundle: {{  bundle.title }}</p> 
+
+          <p>
+            {{ block.settings.custom_bundle_heading }} 
+            {% if block.settings.default_bundle_heading %}
+              {{  bundle.title }}
+            {% endif %}
+          </p> 
+
           {% for faq in faqs %}
             <details>
-              <summary class="faq-summary">
-                <h3>
+              <summary class="faq-summary" style="border-bottom: 1px solid {{ block.settings.divider_color }}">
+                <h3 style="color: {{ block.settings.faq_title_color }}">
                   <span>{{ faq.title }}</span>
                   <span class="icon">&#43;</span> 
                 </h3>
               </summary>
-              <p>{{ faq.description }}</p>
+              <p style="color: {{ block.settings.faq_description_color }}">{{ faq.description }}</p>
             </details>
           {% endfor %}
         {% endif %}
@@ -53,10 +77,69 @@
   "target": "section",
   "stylesheet": "faq-manager-styles.css",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title" },
-    { "type": "product", "id": "product", "label": "product", "autofill": true },
-    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+    { "type": "text", 
+      "id": "main_heading", 
+      "label": "Main heading", 
+      "default": "Frequently Asked Questions" 
+    },
+    { "type": "checkbox", 
+      "id": "show_main_heading", 
+      "label": "Show main heading", 
+      "default": true 
+    },
+    { "type": "text", 
+      "id": "custom_bundle_heading", 
+      "label": "Custom bundle heading" 
+    },
+    { "type": "checkbox", 
+      "id": "default_bundle_heading", 
+      "label": "Show default bundle heading", 
+      "default": true 
+    },
+    {
+      "type": "header",
+      "content": "Section Styling"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 35
+    },
+    { "type": "color", 
+      "id": "main_heading_color", 
+      "label": "Main heading color"
+    },
+    { "type": "color", 
+      "id": "faq_title_color", 
+      "label": "FAQ title color"
+    },
+    { "type": "color", 
+      "id": "faq_description_color", 
+      "label": "FAQ description color"
+    },
+    { "type": "color", 
+      "id": "divider_color", 
+      "label": "Divider color", 
+      "default": "#e9e9e9" 
+    }
   ]
 }
 {% endschema %}
+
+
 

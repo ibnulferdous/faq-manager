@@ -1,5 +1,8 @@
+/* .faq-container .faq-summary {
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+} */
+
 .faq-container .faq-summary h3 {
-  border-bottom: 1px solid #cecece;
   display: flex;
   justify-content: space-between;
   align-items: center;

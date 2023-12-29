@@ -22,7 +22,7 @@ import {
 import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
 import { DeleteMajor, EditMajor, ViewMajor } from "@shopify/polaris-icons";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 
 // Loader function
 export const loader = async ({ request }) => {

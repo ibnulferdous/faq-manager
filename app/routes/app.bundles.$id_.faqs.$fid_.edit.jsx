@@ -11,7 +11,7 @@ import {
 } from "@shopify/polaris";
 import { useState } from "react";
 import { authenticate } from "../shopify.server";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 
 export async function loader({ request, params }) {
   const faq = await prisma.faq.findUnique({

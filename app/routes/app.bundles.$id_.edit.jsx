@@ -11,7 +11,7 @@ import prisma from "../db.server";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData, useNavigate, useSubmit } from "@remix-run/react";
 import { useState } from "react";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 
 // Loader function
 export async function loader({ request, params }) {

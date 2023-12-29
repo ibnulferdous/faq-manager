@@ -2,7 +2,7 @@
 
 name = "faq-manager"
 client_id = "dbe0975d655463f16fdcd25b1ae2d887"
-application_url = "https://agent-dna-brilliant-television.trycloudflare.com"
+application_url = "https://fd-stations-exist-science.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://agent-dna-brilliant-television.trycloudflare.com/auth/callback",
-  "https://agent-dna-brilliant-television.trycloudflare.com/auth/shopify/callback",
-  "https://agent-dna-brilliant-television.trycloudflare.com/api/auth/callback"
+  "https://fd-stations-exist-science.trycloudflare.com/auth/callback",
+  "https://fd-stations-exist-science.trycloudflare.com/auth/shopify/callback",
+  "https://fd-stations-exist-science.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

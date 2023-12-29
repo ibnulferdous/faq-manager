@@ -20,7 +20,7 @@ import {
   Tooltip,
 } from "@shopify/polaris";
 import { DeleteMajor, EditMajor, ViewMajor } from "@shopify/polaris-icons";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 import { authenticate } from "../shopify.server";
 
 // Loader function

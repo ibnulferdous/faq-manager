@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
-import { saveToShopMetafields } from "./metafields.server";
+import { saveToShopMetafields } from "../metafields.server";
 
 // Action Function
 export async function action({ request, params }) {
@@ -27,7 +27,7 @@ export async function action({ request, params }) {
 
   // if bundle creation is successfully, add it to the metafields
   if (dbResponse?.id) {
-    const adminData = await saveToShopMetafields(admin, session);
+    const adminData = await saveToShopMetafields(admin, session, dbResponse.id);
   }
 
   return redirect(`/app`);
